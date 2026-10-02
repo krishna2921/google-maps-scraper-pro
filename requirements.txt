@@ -5,3 +5,9 @@ pandas>=2.2.0
 plotly>=5.22.0
 chromium
 chromium-driver
+streamlit>=1.35.0
+selenium>=4.20.0
+webdriver-manager>=4.0.1
+pandas>=2.2.0
+plotly>=5.22.0
+`
