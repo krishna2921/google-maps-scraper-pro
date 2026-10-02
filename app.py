@@ -325,7 +325,7 @@ def scrape_google_maps(url, max_duration, max_results, region, status_placeholde
         scroll_attempt = 0
         consecutive_no_new_listings = 0
         
-        status_placeholder.markdown("🔄 **Starting SUPER aggressive auto-scroll...**")
+        status_placeholder.markdown("🔄**Starting SUPER aggressive auto-scroll...** ")
         
         while time.time() - start_time < max_duration and len(scraped_businesses) < max_results:
             scroll_attempt += 1
