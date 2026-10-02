@@ -264,7 +264,7 @@ def scrape_google_maps(url, max_duration, max_results, region, status_placeholde
                 "🚀 **Initializing Chrome driver...**"
             )
 
-            chromium_path = (
+                       chromium_path = (
                 shutil.which("chromium")
                 or shutil.which("chromium-browser")
                 or shutil.which("google-chrome")
