@@ -259,7 +259,7 @@ def scrape_google_maps(url, max_duration, max_results, region, status_placeholde
     scraped_businesses = []
     seen_names = set()
     
-    try:        try:
+    try:
             status_placeholder.markdown(
                 "🚀 **Initializing Chrome driver...**"
             )
