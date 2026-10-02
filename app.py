@@ -294,8 +294,7 @@ def scrape_google_maps(url, max_duration, max_results, region, status_placeholde
             driver.get(url)
         
         # Longer wait for visible browser
-        wait_time = 10 if browser_mode != "Headless (No Browser)" else 8
-        time.sleep(wait_time)
+                    wait_time = 10 if browser_mode != "Headless (No Browser)" else 8
         
         status_placeholder.markdown("🔍 **Finding scrollable container...**")
         
