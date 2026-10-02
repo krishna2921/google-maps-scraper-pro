@@ -259,12 +259,12 @@ def scrape_google_maps(url, max_duration, max_results, region, status_placeholde
     scraped_businesses = []
     seen_names = set()
     
-    try:
-                  status_placeholder.markdown(
+    try:        try:
+            status_placeholder.markdown(
                 "🚀 **Initializing Chrome driver...**"
             )
 
-                       chromium_path = (
+            chromium_path = (
                 shutil.which("chromium")
                 or shutil.which("chromium-browser")
                 or shutil.which("google-chrome")
@@ -287,9 +287,11 @@ def scrape_google_maps(url, max_duration, max_results, region, status_placeholde
                     service=Service(ChromeDriverManager().install()),
                     options=options
                 )
-        
-        status_placeholder.markdown(f"🌐 **Loading Google Maps URL...**")
-        driver.get(url)
+
+            status_placeholder.markdown(
+                "🌐 **Loading Google Maps URL...**"
+            )
+            driver.get(url)
         
         # Longer wait for visible browser
         wait_time = 10 if browser_mode != "Headless (No Browser)" else 8
