@@ -4,3 +4,4 @@ webdriver-manager>=4.0.1
 pandas>=2.2.0
 plotly>=5.22.0
 chromium
+chromium-driver
