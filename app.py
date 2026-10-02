@@ -260,30 +260,33 @@ def scrape_google_maps(url, max_duration, max_results, region, status_placeholde
     seen_names = set()
     
     try:
-        status_placeholder.markdown("🚀 **Initializing Chrome driver...**")
-        chromium_path = (
-    shutil.which("chromium")
-    or shutil.which("chromium-browser")
-    or shutil.which("google-chrome")
-)
-chromedriver_path = shutil.which("chromedriver")
+                  status_placeholder.markdown(
+                "🚀 **Initializing Chrome driver...**"
+            )
 
-if chromium_path and chromedriver_path:
-    options.binary_location = chromium_path
-    options.add_argument("--headless=new")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-gpu")
+            chromium_path = (
+                shutil.which("chromium")
+                or shutil.which("chromium-browser")
+                or shutil.which("google-chrome")
+            )
+            chromedriver_path = shutil.which("chromedriver")
 
-    driver = webdriver.Chrome(
-        service=Service(chromedriver_path),
-        options=options
-    )
-else:
-    driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()),
-        options=options
-    )
+            if chromium_path and chromedriver_path:
+                options.binary_location = chromium_path
+                options.add_argument("--headless=new")
+                options.add_argument("--no-sandbox")
+                options.add_argument("--disable-dev-shm-usage")
+                options.add_argument("--disable-gpu")
+
+                driver = webdriver.Chrome(
+                    service=Service(chromedriver_path),
+                    options=options
+                )
+            else:
+                driver = webdriver.Chrome(
+                    service=Service(ChromeDriverManager().install()),
+                    options=options
+                )
         
         status_placeholder.markdown(f"🌐 **Loading Google Maps URL...**")
         driver.get(url)
