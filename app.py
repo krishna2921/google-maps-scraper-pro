@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 import time
+import shutil
 import random
 import plotly.express as px
 from datetime import datetime
@@ -260,7 +261,29 @@ def scrape_google_maps(url, max_duration, max_results, region, status_placeholde
     
     try:
         status_placeholder.markdown("🚀 **Initializing Chrome driver...**")
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        chromium_path = (
+    shutil.which("chromium")
+    or shutil.which("chromium-browser")
+    or shutil.which("google-chrome")
+)
+chromedriver_path = shutil.which("chromedriver")
+
+if chromium_path and chromedriver_path:
+    options.binary_location = chromium_path
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+
+    driver = webdriver.Chrome(
+        service=Service(chromedriver_path),
+        options=options
+    )
+else:
+    driver = webdriver.Chrome(
+        service=Service(ChromeDriverManager().install()),
+        options=options
+    )
         
         status_placeholder.markdown(f"🌐 **Loading Google Maps URL...**")
         driver.get(url)
